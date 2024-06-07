@@ -1,0 +1,14 @@
+---
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: e3.cpressland.io
+  namespace: traefik
+spec:
+  dnsNames:
+    - "*.e3.cpressland.io"
+  issuerRef:
+    group: cert-manager.io
+    kind: Issuer
+    name: acme-cloudflare
+  secretName: e3.cpressland.io

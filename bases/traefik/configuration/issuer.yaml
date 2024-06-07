@@ -1,0 +1,18 @@
+---
+apiVersion: cert-manager.io/v1
+kind: Issuer
+metadata:
+  name: acme-cloudflare
+  namespace: traefik
+spec:
+  acme:
+    email: mail@cpressland.io
+    privateKeySecretRef:
+      name: acme-cloudflare
+    server: https://acme-v02.api.letsencrypt.org/directory
+    solvers:
+      - dns01:
+          cloudflare:
+            apiTokenSecretRef:
+              name: cloudflare-api-key
+              key: api-token

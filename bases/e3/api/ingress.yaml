@@ -1,0 +1,14 @@
+apiVersion: traefik.io/v1alpha1
+kind: IngressRoute
+metadata:
+  name: api.e3.cpressland.io
+  namespace: e3
+spec:
+  entryPoints:
+    - websecure
+  routes:
+    - kind: Rule
+      match: Host(`api.e3.cpressland.io`) && PathPrefix(`/users`)
+      services:
+        - name: api
+          port: 80

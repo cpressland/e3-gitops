@@ -1,0 +1,14 @@
+---
+apiVersion: kustomize.toolkit.fluxcd.io/v1
+kind: Kustomization
+metadata:
+  name: e3-api
+  namespace: flux-system
+spec:
+  interval: 60m0s
+  path: ./bases/e3/api
+  force: true
+  prune: true
+  sourceRef:
+    kind: GitRepository
+    name: flux-system

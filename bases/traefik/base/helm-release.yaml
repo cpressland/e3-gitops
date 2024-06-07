@@ -26,3 +26,8 @@ spec:
         format: json
     service:
       type: LoadBalancer
+    ingressRoute:
+      healthcheck:
+        enabled: true
+        matchRule: Host(`traefik.e3.cpressland.io`) && PathPrefix(`/ping`)
+        entryPoints: ["websecure"]

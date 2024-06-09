@@ -1,0 +1,23 @@
+apiVersion: image.toolkit.fluxcd.io/v1beta2
+kind: ImageRepository
+metadata:
+  name: e3-api
+  namespace: flux-system
+spec:
+  image: ghcr.io/cpressland/e3-go-test-api
+  interval: 5m0s
+---
+apiVersion: image.toolkit.fluxcd.io/v1beta2
+kind: ImagePolicy
+metadata:
+  name: e3-api
+  namespace: flux-system
+spec:
+  imageRepositoryRef:
+    name: e3-api
+  filterTags:
+    pattern: (?P<ts>\d+(\.\d+)*)$
+    extract: $ts
+  policy:
+    semver:
+      range: ">1.0.0"
